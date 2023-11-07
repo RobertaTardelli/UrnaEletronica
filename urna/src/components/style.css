@@ -8,12 +8,55 @@
     border-radius: 50px;
 }
 
+.titutecla {
+    width: 400px;
+    height: 500px;
+}
+
+.titulo {
+    font-size: 35px;
+    display: flex;
+    justify-content: end;
+
+}
+
 .tela {
+    width: 700px;
+    height: 500px;
     background-color: white;
-    width: ;
+    margin-left: 30px;
+    margin-top: 50px;
+    
+}
+
+
+
+.titulo {
+    background-color: white;
+    margin-left: 45px;
+    height: 100px;
+    color: black;
+    width: 400px;
+    margin-top: 20px;
+    
+    
+    
 }
 
 .teclado {
+    width: 400px;
+    height: 450px;
+    background-color: black;
+    margin-top: px;
+    margin-left: 45px;
+
+}
+
+
+.um {
+  color: white;
+  display: flex;
+
 
 }
 
