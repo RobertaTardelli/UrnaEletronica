@@ -17,7 +17,18 @@
     font-size: 35px;
     display: flex;
     justify-content: end;
+    background-color: white;
+    margin-left: 45px;
+    height: 100px;
+    color: black;
+    width: 400px;
+    margin-top: 20px;
 
+}
+h1 {
+    font-size: 30px;
+    margin-left: 80px;
+    margin-top: 15px;
 }
 
 .tela {
@@ -26,20 +37,6 @@
     background-color: white;
     margin-left: 30px;
     margin-top: 50px;
-    
-}
-
-
-
-.titulo {
-    background-color: white;
-    margin-left: 45px;
-    height: 100px;
-    color: black;
-    width: 400px;
-    margin-top: 20px;
-    
-    
     
 }
 
@@ -53,10 +50,80 @@
 }
 
 
-.um {
-  color: white;
-  display: flex;
+button {
+    background-color: black;
+    color: white;
+    
+    
+}
+.teclaPreta{
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    
+}
+
+.teclaConfirma {
+    background-color: green;
+    color: black;
+    height: 60px;
+    width: 80px;
+
+}
+
+.teclaCorrige {
+    background-color: red;
+    color: black;
+    height: 50px;
+    width: 80px;
+
+}
+
+.teclaBranco{
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 80px;
+
+}
+
+.numeros {
+    padding-top: 50px;
+    
+    
 
 
+}
+
+.umtres {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.quatroseis {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+.setenove {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.zirou {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.confirmacoes {
+    padding-top:30px ;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
