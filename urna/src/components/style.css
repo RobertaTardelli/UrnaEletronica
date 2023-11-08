@@ -7,10 +7,17 @@
     margin-top: 160px;
     border-radius: 50px;
 }
+.tela h1 {
+    display: flex;
+    margin-top: 200px;
+    font-size: 60px;
+}
+
 
 .titutecla {
     width: 400px;
     height: 500px;
+    
 }
 
 .titulo {
@@ -23,7 +30,12 @@
     color: black;
     width: 400px;
     margin-top: 20px;
+    border-radius: 20px;
+    
 
+}
+.titulo img {
+    border-radius: 20px;
 }
 h1 {
     font-size: 30px;
@@ -36,7 +48,11 @@ h1 {
     height: 500px;
     background-color: white;
     margin-left: 30px;
-    margin-top: 50px;
+    margin-top: 60px;
+    padding: 50px;
+    border-radius: 20px;
+    display: flex;
+    box-sizing: border-box;
     
 }
 
@@ -46,6 +62,7 @@ h1 {
     background-color: black;
     margin-top: px;
     margin-left: 45px;
+    border-radius: 20px;
 
 }
 
@@ -62,12 +79,51 @@ button {
     font-size: 30px;
     
 }
+.numeros {
+    padding-top: 50px;
+ }
+
+.umtres {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    
+}
+
+.quatroseis {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    
+    
+}
+
+.setenove {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    
+}
+
+.zirou {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.confirmacoes {
+    padding-top:30px ;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
 
 .teclaConfirma {
     background-color: green;
     color: black;
     height: 60px;
     width: 80px;
+    margin-bottom: 50px;
 
 }
 
@@ -86,44 +142,21 @@ button {
     width: 80px;
 
 }
-
-.numeros {
-    padding-top: 50px;
-    
-    
-
-
-}
-
-.umtres {
+.infos{
+    background-color: red;
+    width: 70%;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    flex-direction: column;
 }
-
-.quatroseis {
+.infos_cargo{
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.infos h4{
+    margin: 20px 0;
+}
+.imagens{
+    background-color: blue;
+    width: 30%;
     display: flex;
-    justify-content: center;
-    gap: 30px;
-
 }
-
-.setenove {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.zirou {
-    display: flex;
-    justify-content: center;
-    
-}
-
-.confirmacoes {
-    padding-top:30px ;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
