@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
+import coxinha from "../assets/coxinha.png";
 import Botao from "./button/Botao";
 import Quadrado from "./imput/Quadrado";
 
@@ -13,13 +14,37 @@ export default function TelaInicial () {
             <div class="tela">
                 
                 <div className="infos">
-                    <h3 className="infos_cargo">Senadorx</h3>  
-                    <h4>Número</h4>
-                    <h4>Nome</h4>
+                    <h3 className="infos_cargo">Senador</h3>  
+                    
+                    <section class="digito">
+
+                    <div class="numero">
+
+                    <h4>Número: </h4>
+                    </div>
+
+                    <p class="caixa1">
+                    </p>
+
+                    <p class="caixa2"> 
+                    </p>
+
+                    <p class="caixa3">
+                    </p>
+
+                    <p class="caixa4">
+                    </p>
+
+
+
+                    </section>
+                    <h4>Nome: Zé Coxinha</h4>
+                    
+
                     <h4>Partido</h4>  
                 </div>
                 <div className="imagens">
-                    .
+                <img src={coxinha}></img>
                 </div>
 
             </div>
