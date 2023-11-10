@@ -6,13 +6,72 @@ import Teclado from "./Teclado";
 
 export default function TelaInicial() {
 
-    const [digito1, setDigito1] = useState (null);
-    const [digito2, setDigito2] = useState (null);
-    const [digito3, setDigito3] = useState (null);
-    const [digito4, setDigito4] = useState (null);
+    let candidatos = [
+        { 
+            'nome':'Lucas',
+            'partido':'Partido do Lucas',
+            'cargo':'senador',
+            'numero':'1234',
+            'imagem':coxinha
+        },
+        {
+            'nome':'Arthur',
+            'partido':'Partido do Arthur',
+            'cargo':'senador',
+            'numero':'2345',
+            'imagem':null
+        }
+    ]
 
-    function cliqueBotao (numero) {
-        console.log(numero);
+    const [digito1, setDigito1] = useState ('');
+    const [digito2, setDigito2] = useState ('');
+    const [digito3, setDigito3] = useState ('');
+    const [digito4, setDigito4] = useState ('');
+    const [contador, setContador] = useState (1);
+    const [candidatoDigitado, setCandidatoDigitado] = useState(
+        { 
+            'nome':'',
+            'partido':'',
+            'cargo':'senador',
+            'numero':'',
+            'imagem':''
+        }
+    );
+    const [imagem, setImagem] = useState (null);
+   
+
+    function aoClicar(digito) {
+        if (contador == 1) {
+        setDigito1(digito);
+        setContador(contador + 1);
+        }
+        if (contador == 2) {
+            setDigito2(digito);
+            setContador(contador + 1);
+        }
+        if(contador == 3) {
+            setDigito3(digito);
+            setContador(contador + 1);
+        }
+        if (contador == 4) {
+            setDigito4(digito);
+            setContador(contador + 1);
+
+            verificaCandidato();
+        }
+    }
+    function verificaCandidato () {
+        //Candidato existe?
+        //se existe, carrega os dados dele
+        //se não existe, carrega voto nulo
+    }
+
+    function aoCorrigir() {
+        setDigito1('');
+        setDigito2('');
+        setDigito3('');
+        setDigito4('');
+        setContador(1);
     }
 
     return (
@@ -21,7 +80,7 @@ export default function TelaInicial() {
 
             <div class="tela">
                 <div className="infos">
-                    <h3 className="infos_cargo">Senador</h3>
+                    <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3>
 
                     <section class="digito">
 
@@ -29,26 +88,28 @@ export default function TelaInicial() {
                             <h4>Número: </h4>
                         </div>
 
-                        <p className='input'>1</p>
-                        <p className='input'>2</p>
-                        <p className='input'>3</p>
-                        <p className='input'>4</p>
+                        <p className='input'>{digito1}</p>
+                        <p className='input'>{digito2}</p>
+                        <p className='input'>{digito3}</p>
+                        <p className='input'>{digito4}</p>
 
                     </section>
-                    <h4>Nome: Zé Coxinha</h4>
-                    <h4>Partido</h4>
+                    <h4>Nome: {candidatoDigitado.nome}</h4>
+                    <h4>Partido: {candidatoDigitado.partido}</h4>
                 </div>
                 <div className="imagens">
-                    <img src={coxinha}></img>
+                    <img src={candidatoDigitado.imagem}></img>
                 </div>
             </div>
 
-            <div className="titutecla">
+            <div className="tituloTeclado">
                 <div className="titulo">
                     <img src={img}></img>
                     <h1>Injustiça Eleitoral </h1>
                 </div>
-                <Teclado cliqueBotao={cliqueBotao}/>
+                <Teclado onClick={aoClicar} aoCorrigir={aoCorrigir}/>
+
+
 
             </div>
         </div>

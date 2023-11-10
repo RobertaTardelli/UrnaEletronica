@@ -10,6 +10,11 @@
 .numeros {
     padding-top: 40px;
  }
+ 
+ button {
+    background-color: black;
+    color: blue;
+}
 
  .teclaPreta{
     width: 70px;
@@ -19,6 +24,12 @@
     align-items: center;
 }
 
+.confirmacoes {
+    padding-top:30px ;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
 .teclaConfirma {
     background-color: green;
     color: black;
@@ -40,4 +51,3 @@
     height: 50px;
     width: 80px;
 }
-

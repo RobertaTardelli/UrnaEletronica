@@ -7,40 +7,6 @@
     margin-top: 160px;
     border-radius: 50px;
 }
-.tela h1 {
-    display: flex;
-    margin-top: 200px;
-    font-size: 60px;
-}
-
-
-
-.titulo {
-    font-size: 35px;
-    display: flex;
-    justify-content: end;
-    background-color: white;
-    margin-left: 45px;
-    height: 100px;
-    color: black;
-    width: 400px;
-    margin-top: 20px;
-    border-radius: 20px;  
-}
-.titutecla {
-    width: 400px;
-    height: 500px;
-    
-}
-.titulo img {
-    border-radius: 20px;
-}
-h1 {
-    font-size: 30px;
-    margin-left: 80px;
-    margin-top: 15px;
-}
-
 .tela {
     width: 700px;
     height: 500px;
@@ -53,20 +19,6 @@ h1 {
     box-sizing: border-box;
     
 }
-
-
-button {
-    background-color: black;
-    color: white;
-}
-
-.confirmacoes {
-    padding-top:30px ;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
 .infos{
     background-color: white;
     width: 70%;
@@ -80,10 +32,28 @@ button {
 .infos h4{
     margin: 20px 0;
 }
+.digito {
+    display: flex;
+}
+.numero {
+    margin-right: 50px;
+}
+
+.input {
+    width: 50px;
+    height: 60px;
+    border: 2px solid rgb(104, 100, 100);
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+}
 .imagens{
     background-color: white;
     width: 30%;
     display: flex;
+}
+.titulo img {
+    border-radius: 20px;
 }
 .imagens img {
     width: 150px;
@@ -92,30 +62,31 @@ button {
     margin-top: 20px;
     border: 2px solid rgb(104, 100, 100);
 }
-.digito {
+.tituloTeclado {
+    width: 400px;
+    height: 500px;
+}
+.titulo {
+    font-size: 35px;
     display: flex;
+    justify-content: end;
+    background-color: white;
+    margin-left: 45px;
+    height: 100px;
+    color: black;
+    width: 400px;
+    margin-top: 20px;
+    border-radius: 20px;  
 }
-
-.input {
-    width: 50px;
-    height: 60px;
-    border: 2px solid rgb(104, 100, 100);
-    
-}
-.numero {
-    margin-right: 50px;
-}
-
-
-h4 {
-    color: rgb(104, 100, 100);
-    font-size: 20px;
+h1 {
+    font-size: 30px;
+    margin-left: 80px;
+    margin-top: 15px;
 }
 h3 {
     color: rgb(104, 100, 100)
 }
-.input {
-    font-size: 60px;
-    display: flex;
-    justify-content: center;
+h4 {
+    color: rgb(104, 100, 100);
+    font-size: 20px;
 }
