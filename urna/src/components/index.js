@@ -2,99 +2,56 @@ import { useState } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
 import coxinha from "../assets/coxinha.png";
-import Botao from "./button/Botao";
-import Quadrado from "./imput/Quadrado";
+import Teclado from "./Teclado";
 
-export default function TelaInicial () {
-   
+export default function TelaInicial() {
+
+    const [digito1, setDigito1] = useState (null);
+    const [digito2, setDigito2] = useState (null);
+    const [digito3, setDigito3] = useState (null);
+    const [digito4, setDigito4] = useState (null);
+
+    function cliqueBotao (numero) {
+        console.log(numero);
+    }
+
     return (
         <div class="urna">
 
-            
+
             <div class="tela">
-                
                 <div className="infos">
-                    <h3 className="infos_cargo">Senador</h3>  
-                    
+                    <h3 className="infos_cargo">Senador</h3>
+
                     <section class="digito">
 
-                    <div class="numero">
+                        <div class="numero">
+                            <h4>Número: </h4>
+                        </div>
 
-                    <h4>Número: </h4>
-                    </div>
-
-                    <p class="caixa1">
-                    </p>
-
-                    <p class="caixa2"> 
-                    </p>
-
-                    <p class="caixa3">
-                    </p>
-
-                    <p class="caixa4">
-                    </p>
-
-
+                        <p className='input'>1</p>
+                        <p className='input'>2</p>
+                        <p className='input'>3</p>
+                        <p className='input'>4</p>
 
                     </section>
                     <h4>Nome: Zé Coxinha</h4>
-                    
-
-                    <h4>Partido</h4>  
+                    <h4>Partido</h4>
                 </div>
                 <div className="imagens">
-                <img src={coxinha}></img>
-                </div>
-
-            </div>
-            <div class="titutecla">
-
-             <div class="titulo">
-                <img src={img}></img>
-                <h1>Injustiça Eleitoral </h1>
-
-            </div>
-
-            <div class="teclado">
-
-                <section class="numeros">
-                <div class="umtres"> 
-                <Botao onClick={"1"} tecla="teclaPreta"> 1 </Botao>
-                <Botao tecla="teclaPreta"> 2 </Botao>
-                <Botao tecla="teclaPreta"> 3 </Botao>
-                </div>
-
-                    <div class="quatroseis">
-                <Botao tecla="teclaPreta"> 4 </Botao>
-                <Botao tecla="teclaPreta"> 5 </Botao>
-                <Botao tecla="teclaPreta"> 6 </Botao>
-                </div>
-
-
-                <div class="setenove">
-                <Botao tecla="teclaPreta"> 7 </Botao>
-                <Botao tecla="teclaPreta"> 8 </Botao>
-                <Botao tecla="teclaPreta"> 9 </Botao>
-                    </div>
-
-                    <div class="zirou">
-                <Botao tecla="teclaPreta"> 0 </Botao>
-                </div>
-                
-                
-                
-                </section>
-
-                    <div class="confirmacoes"> 
-                <Botao tecla="teclaBranco"> Branco </Botao>
-                <Botao tecla="teclaCorrige"> Corrige </Botao>
-                <Botao tecla="teclaConfirma"> Confirma </Botao>
+                    <img src={coxinha}></img>
                 </div>
             </div>
 
+            <div className="titutecla">
+                <div className="titulo">
+                    <img src={img}></img>
+                    <h1>Injustiça Eleitoral </h1>
+                </div>
+                <Teclado cliqueBotao={cliqueBotao}/>
+
             </div>
-            </div>
+        </div>
 
     );
 

@@ -14,11 +14,6 @@
 }
 
 
-.titutecla {
-    width: 400px;
-    height: 500px;
-    
-}
 
 .titulo {
     font-size: 35px;
@@ -30,9 +25,12 @@
     color: black;
     width: 400px;
     margin-top: 20px;
-    border-radius: 20px;
+    border-radius: 20px;  
+}
+.titutecla {
+    width: 400px;
+    height: 500px;
     
-
 }
 .titulo img {
     border-radius: 20px;
@@ -56,59 +54,10 @@ h1 {
     
 }
 
-.teclado {
-    width: 400px;
-    height: 450px;
-    background-color: black;
-    margin-top: px;
-    margin-left: 45px;
-    border-radius: 20px;
-
-}
-
 
 button {
     background-color: black;
     color: white;
-    
-    
-}
-.teclaPreta{
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
-    
-}
-.numeros {
-    padding-top: 50px;
- }
-
-.umtres {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    
-}
-
-.quatroseis {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    
-    
-}
-
-.setenove {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    
-}
-
-.zirou {
-    display: flex;
-    justify-content: center;
-    
 }
 
 .confirmacoes {
@@ -118,30 +67,6 @@ button {
     gap: 30px;
 }
 
-.teclaConfirma {
-    background-color: green;
-    color: black;
-    height: 60px;
-    width: 80px;
-    margin-bottom: 50px;
-
-}
-
-.teclaCorrige {
-    background-color: red;
-    color: black;
-    height: 50px;
-    width: 80px;
-
-}
-
-.teclaBranco{
-    background-color: white;
-    color: black;
-    height: 50px;
-    width: 80px;
-
-}
 .infos{
     background-color: white;
     width: 70%;
@@ -171,33 +96,26 @@ button {
     display: flex;
 }
 
-.caixa1 {
-    width: 50px;
-    height: 60px;
-    border: 2px solid rgb(104, 100, 100);
-    margin-left: 50px;
-}
-.caixa2 {
-    width: 50px;
-    height: 60px;
-    border: 2px solid rgb(104, 100, 100);
-}
-.caixa3 {
-    width: 50px;
-    height: 60px;
-    border: 2px solid rgb(104, 100, 100);
-   
-}
-.caixa4 {
+.input {
     width: 50px;
     height: 60px;
     border: 2px solid rgb(104, 100, 100);
     
 }
+.numero {
+    margin-right: 50px;
+}
+
 
 h4 {
-    color: rgb(104, 100, 100)
+    color: rgb(104, 100, 100);
+    font-size: 20px;
 }
 h3 {
     color: rgb(104, 100, 100)
+}
+.input {
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
 }

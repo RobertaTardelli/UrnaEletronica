@@ -1,0 +1,43 @@
+.teclado {
+    width: 400px;
+    height: 450px;
+    background-color: black;
+    margin-top: px;
+    margin-left: 45px;
+    border-radius: 20px;
+}
+
+.numeros {
+    padding-top: 40px;
+ }
+
+ .teclaPreta{
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    margin-left: 50px;
+    align-items: center;
+}
+
+.teclaConfirma {
+    background-color: green;
+    color: black;
+    height: 60px;
+    width: 80px;
+    margin-bottom: 50px;
+}
+
+.teclaCorrige {
+    background-color: red;
+    color: black;
+    height: 50px;
+    width: 80px;
+}
+
+.teclaBranco{
+    background-color: white;
+    color: black;
+    height: 50px;
+    width: 80px;
+}
+
