@@ -2,37 +2,38 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
 import coxinha from "../assets/coxinha.png";
+import pxtrick from "../assets/pxtrick.jpeg";
 import Teclado from "./Teclado";
 
 export default function TelaInicial() {
 
     let candidatos = [
         { 
-            'nome':'Lucas',
+            'nome':'Coxinha',
             'partido':'Partido do Lucas',
             'cargo':'senador',
             'numero':'1234',
             'imagem':coxinha
         },
         {
-            'nome':'Arthur',
-            'partido':'Partido do Arthur',
+            'nome':'Pxtrick',
+            'partido':'Partido de Todes ',
             'cargo':'senador',
             'numero':'2345',
-            'imagem':null
+            'imagem': pxtrick
         }, 
         {
             'nome':'Arthur',
             'partido':'Partido do Arthur',
             'cargo':'senador',
-            'numero':'2345',
+            'numero':'2556',
             'imagem':null 
         }, 
         {
             'nome':'Arthur',
             'partido':'Partido do Arthur',
             'cargo':'senador',
-            'numero':'2345',
+            'numero':'2455',
             'imagem':null
         },
 
@@ -40,7 +41,7 @@ export default function TelaInicial() {
         'nome':'Arthur',
         'partido':'Partido do Arthur',
         'cargo':'senador',
-        'numero':'2345',
+        'numero':'5368',
         'imagem':null
     }
     ]
@@ -86,15 +87,12 @@ export default function TelaInicial() {
             for (let i = 0; i < candidatos.length; i++) {
                 if (candidatos[i].numero == numero) {
                     setCandidatoDigitado(candidatos[i]);
-                // } else {
-                //     setVotoNulo(" ");
+                } else {
+                setVotoNulo(votoNulo +1);
+                
                 }
 
             }
-        // let numero = 4 states
-        //Candidato existe? (for)
-        //se existe, carrega os dados dele
-        //se não existe, carrega voto nulo
     }
 
     function aoCorrigir() {
