@@ -101,13 +101,14 @@ export default function TelaInicial() {
         let voto;
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
         for (let i = 0; i < candidatos.length; i++) {
+            
             if (candidatos[i].numero == numero) {
                 setVotoCandidato(votoCandidato[i] + 1);
                 voto = true;
 
                 if (voto == true) {
                     return (
-                    <h1>Você votou no candidato {votoCandidato[i]} {aoCorrigir()}</h1>
+                    <h1>Você votou no candidato {candidatos[i]} {aoCorrigir()}</h1>
                     );
                    
 
@@ -129,18 +130,18 @@ export default function TelaInicial() {
     }
 
     function votoBranco() {
-    
+    console.log("Voto em branco chamado")
         return (
-            <h1>Deseja votar em branco?
-                <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
-                    Sim
-                </button>
-                <button className="botaoNao" onClick={aoCorrigir}>
-                    Não
-                </button>
-            </h1>
-            
-        );
+            <div className="votoBranco">
+              <h1>Deseja votar em branco? </h1>
+              <button className="botaoSim" onClick={() => setVotoNulo(votoNulo + 1)}>
+                Sim
+              </button>
+              <button className="botaoNao" onClick={aoCorrigir}>
+                Não
+              </button>
+            </div>
+          );
     }
 
     function aoCorrigir() {
@@ -163,16 +164,16 @@ export default function TelaInicial() {
     }, [digito4]);
 
     return (
-        <div class="urna">
+        <div className="urna">
 
 
-            <div class="tela">
+            <div className="tela">
                 <div className="infos">
                     <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3>
 
-                    <section class="digito">
+                    <section className="digito">
 
-                        <div class="numero">
+                        <div className="numero">
                             <h4>Número: </h4>
                         </div>
 
