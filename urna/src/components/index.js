@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
 import coxinha from "../assets/coxinha.png";
@@ -20,7 +20,29 @@ export default function TelaInicial() {
             'cargo':'senador',
             'numero':'2345',
             'imagem':null
-        }
+        }, 
+        {
+            'nome':'Arthur',
+            'partido':'Partido do Arthur',
+            'cargo':'senador',
+            'numero':'2345',
+            'imagem':null 
+        }, 
+        {
+            'nome':'Arthur',
+            'partido':'Partido do Arthur',
+            'cargo':'senador',
+            'numero':'2345',
+            'imagem':null
+        },
+
+        {
+        'nome':'Arthur',
+        'partido':'Partido do Arthur',
+        'cargo':'senador',
+        'numero':'2345',
+        'imagem':null
+    }
     ]
 
     const [digito1, setDigito1] = useState ('');
@@ -28,6 +50,7 @@ export default function TelaInicial() {
     const [digito3, setDigito3] = useState ('');
     const [digito4, setDigito4] = useState ('');
     const [contador, setContador] = useState (1);
+    const [votoNulo, setVotoNulo] = useState (0);
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         { 
             'nome':'',
@@ -56,12 +79,20 @@ export default function TelaInicial() {
         if (contador == 4) {
             setDigito4(digito);
             setContador(contador + 1);
-
-            verificaCandidato();
         }
     }
     function verificaCandidato () {
-        //Candidato existe?
+        let numero = `${digito1}${digito2}${digito3}${digito4}`;
+            for (let i = 0; i < candidatos.length; i++) {
+                if (candidatos[i].numero == numero) {
+                    setCandidatoDigitado(candidatos[i]);
+                // } else {
+                //     setVotoNulo(" ");
+                }
+
+            }
+        // let numero = 4 states
+        //Candidato existe? (for)
         //se existe, carrega os dados dele
         //se não existe, carrega voto nulo
     }
@@ -71,8 +102,19 @@ export default function TelaInicial() {
         setDigito2('');
         setDigito3('');
         setDigito4('');
+        setCandidatoDigitado({ 
+            'nome':'',
+            'partido':'',
+            'cargo':'senador',
+            'numero':'',
+            'imagem':''
+        })
         setContador(1);
     }
+
+    useEffect ( ()=>{
+        verificaCandidato();
+    },[digito4]);
 
     return (
         <div class="urna">
