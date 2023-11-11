@@ -18,9 +18,9 @@ export default function Teclado (props) {
                 })}
 
             <div className="confirmacoes">
-                <button className="teclaBranco" > Branco </button>
+                <button className="teclaBranco" onClick={props.votoNullo} > Branco </button>
                 <button className="teclaCorrige" onClick={props.aoCorrigir}> Corrige </button>
-                <button className="teclaConfirma"> Confirma </button>
+                <button className="teclaConfirma" onClick={props.aoConfirmar}>Confirma</button>
             </div>
             </section>
         </div>

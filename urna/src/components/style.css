@@ -90,3 +90,9 @@ h4 {
     color: rgb(104, 100, 100);
     font-size: 20px;
 }
+
+.botaoSim {
+    width: 130px;
+    height: 130px;
+    background-color: green;
+}
