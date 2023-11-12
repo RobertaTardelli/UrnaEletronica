@@ -13,24 +13,31 @@
     background-color: white;
     margin-left: 30px;
     margin-top: 60px;
-    padding: 50px;
+    padding: 20px;
     border-radius: 20px;
     display: flex;
     box-sizing: border-box;
-    
 }
+
 .infos{
     background-color: white;
     width: 70%;
     display: flex;
     flex-direction: column;
 }
-.infos_cargo{
+/* .infos_cargo{
     margin: 0 auto;
     margin-bottom: 50px;
+} */
+.cargo {
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 60px;
 }
-.infos h4{
-    margin: 20px 0;
+.cola {
+    font-size: 15px;
+    padding-bottom: 50px;
+
 }
 .digito {
     display: flex;
@@ -78,17 +85,15 @@
     margin-top: 20px;
     border-radius: 20px;  
 }
-h1 {
+.titulo p {
     font-size: 30px;
     margin-left: 80px;
     margin-top: 15px;
 }
-h3 {
-    color: rgb(104, 100, 100)
-}
 h4 {
     color: rgb(104, 100, 100);
     font-size: 20px;
+    padding-bottom: 70px;
 }
 .votoBranco {
     background-color: silver;

@@ -2,16 +2,19 @@ import { useState, useEffect } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
 import coxinha from "../assets/coxinha.png";
-import pxtrick from "../assets/pxtrick.jpeg";
+import pxtrick from "../assets/pxtrick.jpg";
 import passaFome from "../assets/passafome.jpg";
+import vasco from "../assets/vasco.png";
+import romulo from "../assets/romulo.jpg";
+import felipe from "../assets/felipe.jpg";
 import Teclado from "./Teclado";
 
 export default function TelaInicial() {
 
     let candidatos = [
         {
-            'nome': 'Coxinha',
-            'partido': 'Partido do Lucas',
+            'nome': 'Lucas',
+            'partido': 'Partido da Coxinha',
             'cargo': 'senador',
             'numero': '1234',
             'imagem': coxinha
@@ -31,19 +34,19 @@ export default function TelaInicial() {
             'imagem': passaFome
         },
         {
-            'nome': 'Arthur',
-            'partido': 'Partido do Arthur',
+            'nome': 'Rômulo',
+            'partido': 'Partido da Linguiça',
             'cargo': 'senador',
             'numero': '2455',
-            'imagem': null
+            'imagem': romulo
         },
 
         {
-            'nome': 'Arthur',
-            'partido': 'Partido do Arthur',
+            'nome': 'Felipe !Schimit',
+            'partido': 'Partido doce de Paçoca',
             'cargo': 'senador',
             'numero': '5368',
-            'imagem': null
+            'imagem': felipe
         }
     ]
 
@@ -54,18 +57,15 @@ export default function TelaInicial() {
     const [contador, setContador] = useState(1);
     const [votoNulo, setVotoNulo] = useState(0);
     const [votoCandidato, setVotoCandidato] = useState(0);
-    const [confirmaVoto, setConfirmaVoto] = useState(' ');
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
             'nome': '',
             'partido': '',
             'cargo': 'senador',
             'numero': '',
-            'imagem': ''
+            'imagem': vasco
         }
     );
-    const [imagem, setImagem] = useState(null);
-
 
     function aoClicar(digito) {
         if (contador == 1) {
@@ -85,63 +85,31 @@ export default function TelaInicial() {
             setContador(contador + 1);
         }
     }
+
+
+
+
     function verificaCandidato() {
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
+
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
                 setCandidatoDigitado(candidatos[i]);
-            } else {
-                setVotoNulo(votoNulo + 1);
+                break;
+            // } else {
+            //     return (
+            //         <h1>Esse candidato não existe, deseja votar em branco?
+            //             <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
+            //                 Sim
+            //             </button>
+            //             <button className="botaoNao" onClick={aoCorrigir}>
+            //                 Não
+            //             </button>
+            //         </h1>
+            //     )
             }
 
         }
-    }
-
-    function confirmar() {
-        let voto;
-        let numero = `${digito1}${digito2}${digito3}${digito4}`;
-        for (let i = 0; i < candidatos.length; i++) {
-            
-            if (candidatos[i].numero == numero) {
-                setVotoCandidato(votoCandidato[i] + 1);
-                voto = true;
-
-                if (voto == true) {
-                    return (
-                    <h1>Você votou no candidato {candidatos[i]} {aoCorrigir()}</h1>
-                    );
-                   
-
-                } else if (candidatos[i].numero != numero) {
-                    voto = false;
-                    return (
-                    <h1>Esse candidato não existe, deseja votar em branco?
-                        <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
-                            Sim
-                        </button>
-                        <button className="botaoNao" onClick={aoCorrigir}>
-                            Não
-                        </button>
-                    </h1>
-                    );
-                }
-            }
-        }
-    }
-
-    function votoBranco() {
-    console.log("Voto em branco chamado")
-        return (
-            <div className="votoBranco">
-              <h1>Deseja votar em branco? </h1>
-              <button className="botaoSim" onClick={() => setVotoNulo(votoNulo + 1)}>
-                Sim
-              </button>
-              <button className="botaoNao" onClick={aoCorrigir}>
-                Não
-              </button>
-            </div>
-          );
     }
 
     function aoCorrigir() {
@@ -154,9 +122,57 @@ export default function TelaInicial() {
             'partido': '',
             'cargo': 'senador',
             'numero': '',
-            'imagem': ''
+            'imagem': vasco
         })
         setContador(1);
+    }
+    function confirmar() {
+        verificaCandidato();
+        setVotoCandidato(votoCandidato + 1);
+        setTimeout(aoCorrigir, 1000);
+        // return (
+        // <h1>Você votou no candidato {candidatos[i]} {aoCorrigir()}</h1>
+        // );
+        //  } else if (candidatos[i].numero != numero) {
+
+        //     return (
+        //     <h1>Esse candidato não existe, deseja votar em branco?
+        //         <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
+        //             Sim
+        //         </button>
+        //         <button className="botaoNao" onClick={aoCorrigir}>
+        //             Não
+        //         </button>
+        //     </h1>
+        //     );
+    }
+
+
+
+    function votoBranco() {
+        console.log("Voto em branco chamado")
+        return (
+            <div className="votoBranco">
+                <h1>Deseja votar em branco? </h1>
+                <button className="botaoSim" onClick={() => setVotoNulo(votoNulo + 1)}>
+                    Sim
+                </button>
+                <button className="botaoNao" onClick={aoCorrigir}>
+                    Não
+                </button>
+            </div>
+        );
+    }
+    function infoSenadores() {
+        let senadoresList = [];
+        for (let i = 0; i < candidatos.length; i++) {
+            if (candidatos[i].cargo === 'senador') {
+                senadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
+            }
+        }
+        return (
+            senadoresList.join(', ')
+        );
     }
 
     useEffect(() => {
@@ -164,12 +180,18 @@ export default function TelaInicial() {
     }, [digito4]);
 
     return (
+
+
         <div className="urna">
 
 
             <div className="tela">
+
                 <div className="infos">
-                    <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3>
+                    <h1 className="cargo">Senadores</h1>
+                    <h1 className="cola">Candidatos: {infoSenadores()}</h1>
+
+                    {/* <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3> */}
 
                     <section className="digito">
 
@@ -194,7 +216,7 @@ export default function TelaInicial() {
             <div className="tituloTeclado">
                 <div className="titulo">
                     <img src={img}></img>
-                    <h1>Injustiça Eleitoral </h1>
+                    <p>Injustiça Eleitoral </p>
                 </div>
                 <Teclado
                     onClick={aoClicar}
