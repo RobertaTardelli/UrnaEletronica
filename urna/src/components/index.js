@@ -17,28 +17,32 @@ export default function TelaInicial() {
             'partido': 'Partido da Coxinha',
             'cargo': 'senador',
             'numero': '1234',
-            'imagem': coxinha
+            'imagem': coxinha,
+            'votos': 0
         },
         {
             'nome': 'Pxtrick',
             'partido': 'Partido de Todes ',
             'cargo': 'senador',
             'numero': '2345',
-            'imagem': pxtrick
+            'imagem': pxtrick,
+            'votos' : 0
         },
         {
             'nome': 'Rodrigo',
             'partido': 'Partido do Passa Fome',
             'cargo': 'senador',
             'numero': '1008',
-            'imagem': passaFome
+            'imagem': passaFome,
+            'votos' : 0
         },
         {
             'nome': 'Rômulo',
             'partido': 'Partido da Linguiça',
             'cargo': 'senador',
             'numero': '2455',
-            'imagem': romulo
+            'imagem': romulo,
+            'votos' : 0
         },
 
         {
@@ -46,7 +50,8 @@ export default function TelaInicial() {
             'partido': 'Partido doce de Paçoca',
             'cargo': 'senador',
             'numero': '5368',
-            'imagem': felipe
+            'imagem': felipe,
+            'votos' : 0
         }
     ]
 
@@ -55,7 +60,10 @@ export default function TelaInicial() {
     const [digito3, setDigito3] = useState('');
     const [digito4, setDigito4] = useState('');
     const [contador, setContador] = useState(1);
+    const [rodape, setRodape] = useState('');
+    const [votos, setVotos] = useState(true);
     const [votoNulo, setVotoNulo] = useState(0);
+    // const [nulo, setNulo] = useState(true);
     const [votoCandidato, setVotoCandidato] = useState(0);
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
@@ -64,6 +72,12 @@ export default function TelaInicial() {
             'cargo': 'senador',
             'numero': '',
             'imagem': vasco
+        }
+    );
+    const [votosInvalidos, setVotosInvalidos] = useState(
+        {
+            'votos_nulos': 0,
+            'votos_brancos': 0
         }
     );
 
@@ -90,25 +104,19 @@ export default function TelaInicial() {
 
 
     function verificaCandidato() {
+
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
+        let nulo = true;
 
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
                 setCandidatoDigitado(candidatos[i]);
-                break;
-            // } else {
-            //     return (
-            //         <h1>Esse candidato não existe, deseja votar em branco?
-            //             <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
-            //                 Sim
-            //             </button>
-            //             <button className="botaoNao" onClick={aoCorrigir}>
-            //                 Não
-            //             </button>
-            //         </h1>
-            //     )
+                nulo=false;
             }
-
+            break;
+        }
+        if (nulo && (numero !== '')){
+            setRodape('Nulo')
         }
     }
 
@@ -117,6 +125,7 @@ export default function TelaInicial() {
         setDigito2('');
         setDigito3('');
         setDigito4('');
+        setRodape('');
         setCandidatoDigitado({
             'nome': '',
             'partido': '',
@@ -126,25 +135,20 @@ export default function TelaInicial() {
         })
         setContador(1);
     }
-    function confirmar() {
-        verificaCandidato();
-        setVotoCandidato(votoCandidato + 1);
-        setTimeout(aoCorrigir, 1000);
-        // return (
-        // <h1>Você votou no candidato {candidatos[i]} {aoCorrigir()}</h1>
-        // );
-        //  } else if (candidatos[i].numero != numero) {
+    function aoConfirmar() {
 
-        //     return (
-        //     <h1>Esse candidato não existe, deseja votar em branco?
-        //         <button className="botaoSim" onClick={setVotoNulo(votoNulo + 1)}> {aoCorrigir}
-        //             Sim
-        //         </button>
-        //         <button className="botaoNao" onClick={aoCorrigir}>
-        //             Não
-        //         </button>
-        //     </h1>
-        //     );
+        console.log ("teste")
+        let numero = `${digito1}${digito2}${digito3}${digito4}`;
+
+        for (let i = 0; i < candidatos.length; i++) {
+            if (candidatos[i].numero == numero) {
+                setCandidatoDigitado(candidatos[i]);
+            break;
+            }
+            setVotos(votos +1);
+            aoCorrigir();
+        }
+
     }
 
 
@@ -207,6 +211,7 @@ export default function TelaInicial() {
                     </section>
                     <h4>Nome: {candidatoDigitado.nome}</h4>
                     <h4>Partido: {candidatoDigitado.partido}</h4>
+                    <h4>{rodape}</h4>
                 </div>
                 <div className="imagens">
                     <img src={candidatoDigitado.imagem}></img>
@@ -221,7 +226,7 @@ export default function TelaInicial() {
                 <Teclado
                     onClick={aoClicar}
                     aoCorrigir={aoCorrigir}
-                    aoConfirmar={confirmar}
+                    aoConfirmar={aoConfirmar}
                     votoNullo={votoBranco}
                 />
 
