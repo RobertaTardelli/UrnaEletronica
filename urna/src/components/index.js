@@ -112,8 +112,8 @@ export default function TelaInicial() {
             if (candidatos[i].numero == numero) {
                 setCandidatoDigitado(candidatos[i]);
                 nulo=false;
+                break;
             }
-            break;
         }
         if (nulo && (numero !== '')){
             setRodape('Nulo')
@@ -211,7 +211,7 @@ export default function TelaInicial() {
                     </section>
                     <h4>Nome: {candidatoDigitado.nome}</h4>
                     <h4>Partido: {candidatoDigitado.partido}</h4>
-                    <h4>{rodape}</h4>
+                    <h5 className="rodape">{rodape}</h5>
                 </div>
                 <div className="imagens">
                     <img src={candidatoDigitado.imagem}></img>

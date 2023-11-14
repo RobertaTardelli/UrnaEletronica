@@ -12,7 +12,7 @@ export default function Teclado (props) {
                         <button 
                             className="teclaPreta" 
                             onClick={ () => {props.onClick(digito)}} >
-                                {digito}                    
+                                {digito}
                         </button>                        
                     );
                 })}
