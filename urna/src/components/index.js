@@ -11,18 +11,21 @@ import Teclado from "./Teclado";
 
 export default function TelaInicial() {
 
-    let candidatos = [
+
+    
+
+    const [candidatos, setCandidatos] = [
         {
-            'nome': 'Lucas',
-            'partido': 'Partido da Coxinha',
+            'nome': 'Lucas Coxinha',
+            'partido': 'Partido dos Salgados',
             'cargo': 'senador',
             'numero': '1234',
             'imagem': coxinha,
             'votos': 0
         },
         {
-            'nome': 'Pxtrick',
-            'partido': 'Partido de Todes ',
+            'nome': 'Pxtrick do Felipe ',
+            'partido': 'Partido !Schimit ',
             'cargo': 'senador',
             'numero': '2345',
             'imagem': pxtrick,
@@ -62,8 +65,7 @@ export default function TelaInicial() {
     const [contador, setContador] = useState(1);
     const [rodape, setRodape] = useState('');
     const [votos, setVotos] = useState(true);
-    const [votoNulo, setVotoNulo] = useState(0);
-    // const [nulo, setNulo] = useState(true);
+    const [branco, setBranco] = useState(0);
     const [votoCandidato, setVotoCandidato] = useState(0);
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
@@ -116,8 +118,10 @@ export default function TelaInicial() {
             }
         }
         if (nulo && (numero !== '')){
-            setRodape('Nulo')
+            setRodape('Voto Nulo')
         }
+        
+        
     }
 
     function aoCorrigir() {
@@ -136,16 +140,20 @@ export default function TelaInicial() {
         setContador(1);
     }
     function aoConfirmar() {
+        let temp = candidatos;
 
-        console.log ("teste")
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
 
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
-                setCandidatoDigitado(candidatos[i]);
+                candidatos[i].votos++;
+                temp[i].votos =+ 1;
+                setCandidatos(temp);
+                
+                console.log(candidatos[i]);
             break;
             }
-            setVotos(votos +1);
+            setVotos(votos + 1);
             aoCorrigir();
         }
 
@@ -153,19 +161,13 @@ export default function TelaInicial() {
 
 
 
-    function votoBranco() {
-        console.log("Voto em branco chamado")
-        return (
-            <div className="votoBranco">
-                <h1>Deseja votar em branco? </h1>
-                <button className="botaoSim" onClick={() => setVotoNulo(votoNulo + 1)}>
-                    Sim
-                </button>
-                <button className="botaoNao" onClick={aoCorrigir}>
-                    Não
-                </button>
-            </div>
-        );
+    function aoBranco() {
+                   
+       setBranco(branco +1);
+       setRodape('Você votou em branco');
+
+
+    
     }
     function infoSenadores() {
         let senadoresList = [];
@@ -185,8 +187,14 @@ export default function TelaInicial() {
 
     return (
 
+            <div className="telaBranca">
+
+            <div className="apuracao">
+                <button>Apuração</button>
+            </div>
 
         <div className="urna">
+
 
 
             <div className="tela">
@@ -212,6 +220,7 @@ export default function TelaInicial() {
                     <h4>Nome: {candidatoDigitado.nome}</h4>
                     <h4>Partido: {candidatoDigitado.partido}</h4>
                     <h5 className="rodape">{rodape}</h5>
+                    <h6 className="rodape"> {branco} </h6>
                 </div>
                 <div className="imagens">
                     <img src={candidatoDigitado.imagem}></img>
@@ -227,12 +236,13 @@ export default function TelaInicial() {
                     onClick={aoClicar}
                     aoCorrigir={aoCorrigir}
                     aoConfirmar={aoConfirmar}
-                    votoNullo={votoBranco}
+                    aoBranco={aoBranco}
                 />
 
 
 
             </div>
+        </div>
         </div>
 
     );

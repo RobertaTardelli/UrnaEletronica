@@ -4,7 +4,7 @@
     height: 600px;
     display: flex;
     margin: auto;
-    margin-top: 160px;
+    margin-top: 50px;
     border-radius: 50px;
 }
 .tela {
@@ -113,4 +113,14 @@ h5{
     display: flex;
     justify-content: center;
     margin-left: 50px;
+}
+.apuracao button{
+    width: 150px;
+    height: 120px;
+    font-size: 30px;
+}
+.apuracao {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
 }
