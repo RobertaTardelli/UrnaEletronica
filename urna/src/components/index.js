@@ -12,9 +12,9 @@ import Teclado from "./Teclado";
 export default function TelaInicial() {
 
 
-    
 
-    const [candidatos, setCandidatos] = [
+
+    const [candidatos, setCandidatos] = useState([
         {
             'nome': 'Lucas Coxinha',
             'partido': 'Partido dos Salgados',
@@ -29,7 +29,7 @@ export default function TelaInicial() {
             'cargo': 'senador',
             'numero': '2345',
             'imagem': pxtrick,
-            'votos' : 0
+            'votos': 0
         },
         {
             'nome': 'Rodrigo',
@@ -37,7 +37,7 @@ export default function TelaInicial() {
             'cargo': 'senador',
             'numero': '1008',
             'imagem': passaFome,
-            'votos' : 0
+            'votos': 0
         },
         {
             'nome': 'Rômulo',
@@ -45,7 +45,7 @@ export default function TelaInicial() {
             'cargo': 'senador',
             'numero': '2455',
             'imagem': romulo,
-            'votos' : 0
+            'votos': 0
         },
 
         {
@@ -54,9 +54,9 @@ export default function TelaInicial() {
             'cargo': 'senador',
             'numero': '5368',
             'imagem': felipe,
-            'votos' : 0
+            'votos': 0
         }
-    ]
+    ])
 
     const [digito1, setDigito1] = useState('');
     const [digito2, setDigito2] = useState('');
@@ -66,7 +66,7 @@ export default function TelaInicial() {
     const [rodape, setRodape] = useState('');
     const [votos, setVotos] = useState(true);
     const [branco, setBranco] = useState(0);
-    const [votoCandidato, setVotoCandidato] = useState(0);
+    const [apura, setApura] = useState(' ');
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
             'nome': '',
@@ -113,15 +113,15 @@ export default function TelaInicial() {
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
                 setCandidatoDigitado(candidatos[i]);
-                nulo=false;
+                nulo = false;
                 break;
             }
         }
-        if (nulo && (numero !== '')){
+        if (nulo && (numero !== '')) {
             setRodape('Voto Nulo')
         }
-        
-        
+
+
     }
 
     function aoCorrigir() {
@@ -129,46 +129,66 @@ export default function TelaInicial() {
         setDigito2('');
         setDigito3('');
         setDigito4('');
-        setRodape('');
+        setRodape(' ');
+        setBranco(' ');
         setCandidatoDigitado({
-            'nome': '',
-            'partido': '',
-            'cargo': 'senador',
-            'numero': '',
             'imagem': vasco
         })
         setContador(1);
     }
     function aoConfirmar() {
-        let temp = candidatos;
 
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
+        let votoCandidato = candidatos;
 
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
-                candidatos[i].votos++;
-                temp[i].votos =+ 1;
-                setCandidatos(temp);
-                
+                votoCandidato[i].votos += 1;
+                setCandidatos(votoCandidato);
                 console.log(candidatos[i]);
-            break;
+                break;
             }
-            setVotos(votos + 1);
-            aoCorrigir();
         }
-
+        setVotos(votos + 1);
+        aoCorrigir();
     }
 
 
 
     function aoBranco() {
-                   
-       setBranco(branco +1);
-       setRodape('Você votou em branco');
+        setBranco('');
+        <div className={setBranco(
+            <button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
+        )}>
+        </div>
 
-
-    
+        console.log('voto branco');
     }
+    function confirmaVotoBranco() {
+        let votoBranco = votosInvalidos
+        votoBranco.votos_brancos += 1;
+        aoCorrigir();
+        console.log(votosInvalidos.votos_brancos);
+
+    }
+
+    function apuracao() {
+        let listApuracao = [];
+        let listInvalidos = [];
+        for (let i = 0; i < candidatos.length; i++) {
+            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+        }
+        for(let j = 0; j < votosInvalidos.length; j++){
+            listInvalidos.push(`Votos Brancos: ${votosInvalidos[j].votos_brancos}`);
+            listInvalidos.push(`Votos Inválidos: ${votosInvalidos[j].votos_nulos}`);
+        }
+        return (
+            listApuracao.join(', \n') +
+            listInvalidos.join('\n')
+        );
+    }
+
+
     function infoSenadores() {
         let senadoresList = [];
         for (let i = 0; i < candidatos.length; i++) {
@@ -187,62 +207,65 @@ export default function TelaInicial() {
 
     return (
 
-            <div className="telaBranca">
+        <div className="telaBranca">
 
-            <div className="apuracao">
-                <button>Apuração</button>
-            </div>
+                        <div className="apuracao">
+                            <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                            <p className="resultadoApuracao">{apura}</p>
 
-        <div className="urna">
-
-
-
-            <div className="tela">
-
-                <div className="infos">
-                    <h1 className="cargo">Senadores</h1>
-                    <h1 className="cola">Candidatos: {infoSenadores()}</h1>
-
-                    {/* <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3> */}
-
-                    <section className="digito">
-
-                        <div className="numero">
-                            <h4>Número: </h4>
                         </div>
 
-                        <p className='input'>{digito1}</p>
-                        <p className='input'>{digito2}</p>
-                        <p className='input'>{digito3}</p>
-                        <p className='input'>{digito4}</p>
+            <div className="urna">
 
-                    </section>
-                    <h4>Nome: {candidatoDigitado.nome}</h4>
-                    <h4>Partido: {candidatoDigitado.partido}</h4>
-                    <h5 className="rodape">{rodape}</h5>
-                    <h6 className="rodape"> {branco} </h6>
+
+
+                <div className="tela">
+
+                    <div className="infos">
+                        <h1 className="cargo">Senadores</h1>
+                        <h1 className="cola">Candidatos: {infoSenadores()}</h1>
+
+                        {/* <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3> */}
+
+                        <section className="digito">
+
+                            <div className="numero">
+                                <h4>Número: </h4>
+                            </div>
+
+                            <p className='input'>{digito1}</p>
+                            <p className='input'>{digito2}</p>
+                            <p className='input'>{digito3}</p>
+                            <p className='input'>{digito4}</p>
+
+                        </section>
+                        <h4>Nome: {candidatoDigitado.nome}</h4>
+                        <h4>Partido: {candidatoDigitado.partido}</h4>
+                        <h5 className="rodape">{rodape}</h5>
+                        <h6 className="rodape"> {branco} </h6>
+
+                    </div>
+                    <div className="imagens">
+                        <img src={candidatoDigitado.imagem}></img>
+                    </div>
                 </div>
-                <div className="imagens">
-                    <img src={candidatoDigitado.imagem}></img>
+
+                <div className="tituloTeclado">
+                    <div className="titulo">
+                        <img src={img}></img>
+                        <p>Injustiça Eleitoral </p>
+                    </div>
+                    <Teclado
+                        onClick={aoClicar}
+                        aoCorrigir={aoCorrigir}
+                        aoConfirmar={aoConfirmar}
+                        aoBranco={aoBranco}
+                    />
+
+
+
                 </div>
             </div>
-
-            <div className="tituloTeclado">
-                <div className="titulo">
-                    <img src={img}></img>
-                    <p>Injustiça Eleitoral </p>
-                </div>
-                <Teclado
-                    onClick={aoClicar}
-                    aoCorrigir={aoCorrigir}
-                    aoConfirmar={aoConfirmar}
-                    aoBranco={aoBranco}
-                />
-
-
-
-            </div>
-        </div>
         </div>
 
     );

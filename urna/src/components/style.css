@@ -2,11 +2,10 @@
     background-color: silver;
     width: 1200px;
     height: 600px;
-    display: flex;
-    margin: auto;
-    margin-top: 50px;
     border-radius: 50px;
+    display: flex;
 }
+
 .tela {
     width: 700px;
     height: 500px;
@@ -114,13 +113,35 @@ h5{
     justify-content: center;
     margin-left: 50px;
 }
-.apuracao button{
-    width: 150px;
-    height: 120px;
-    font-size: 30px;
+
+.branco {
+    width: 100px;
+    height: 60px;
+    background-color: silver;
+    color: green;
+    margin-left: 230px;
 }
-.apuracao {
+.rodape{
+    font-size: 25px;
+}
+.apuracao{
     display: flex;
-    justify-content: center;
-    margin-top: 50px;
+    justify-content: end;
+    flex-direction: column;
+    
+    
+    
 }
+.botaoApuracao{
+    width: 100px;
+    height: 70px;
+    font-size: 20px;
+}
+.resultadoApuracao {
+    font-size: 20px;
+    flex-direction: column;
+    
+     
+    
+}
+
