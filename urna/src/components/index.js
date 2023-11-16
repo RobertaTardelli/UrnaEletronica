@@ -65,7 +65,7 @@ export default function TelaInicial() {
     const [contador, setContador] = useState(1);
     const [rodape, setRodape] = useState('');
     const [votos, setVotos] = useState(true);
-    const [branco, setBranco] = useState(0);
+    const [branco, setBranco] = useState('');
     const [apura, setApura] = useState(' ');
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
@@ -154,6 +154,8 @@ export default function TelaInicial() {
         if (nulo && (numero !== '')) {
             votoNulo.votos_nulos +=1;
         }
+
+
         setVotos(votos + 1);
         aoCorrigir();
     }
@@ -161,20 +163,18 @@ export default function TelaInicial() {
 
 
     function aoBranco() {
-        setBranco('');
-        <div className={setBranco(<button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
-        )}>
-        </div>
+        setBranco ('Deseja votar em branco?');
+        if (onClick={aoConfirmar}) {
+            confirmaVotoBranco;
+        }
 
-        console.log('voto branco');
     }
     function confirmaVotoBranco() {
         let votoBranco = votosInvalidos
         votoBranco.votos_brancos += 1;
         aoCorrigir();
-        console.log(votosInvalidos.votos_brancos);
 
-    }
+            }
 
     function apuracao() {
         let listApuracao = [];
