@@ -242,7 +242,7 @@ export default function TelaInicial() {
                         <h4>Nome: {candidatoDigitado.nome}</h4>
                         <h4>Partido: {candidatoDigitado.partido}</h4>
                         <h5 className="rodape">{rodape}</h5>
-                        <h6 className="rodape"> {branco} </h6>
+                        
 
                     </div>
                     <div className="imagens">
