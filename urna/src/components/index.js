@@ -140,14 +140,19 @@ export default function TelaInicial() {
 
         let numero = `${digito1}${digito2}${digito3}${digito4}`;
         let votoCandidato = candidatos;
+        let nulo = true;
+        let votoNulo = votosInvalidos;
 
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
                 votoCandidato[i].votos += 1;
                 setCandidatos(votoCandidato);
-                console.log(candidatos[i]);
+                nulo = false;
                 break;
             }
+        }
+        if (nulo && (numero !== '')) {
+            votoNulo.votos_nulos +=1;
         }
         setVotos(votos + 1);
         aoCorrigir();
@@ -157,8 +162,7 @@ export default function TelaInicial() {
 
     function aoBranco() {
         setBranco('');
-        <div className={setBranco(
-            <button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
+        <div className={setBranco(<button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
         )}>
         </div>
 
@@ -174,17 +178,16 @@ export default function TelaInicial() {
 
     function apuracao() {
         let listApuracao = [];
-        let listInvalidos = [];
+        
         for (let i = 0; i < candidatos.length; i++) {
             listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
-        for(let j = 0; j < votosInvalidos.length; j++){
-            listInvalidos.push(`Votos Brancos: ${votosInvalidos[j].votos_brancos}`);
-            listInvalidos.push(`Votos Inválidos: ${votosInvalidos[j].votos_nulos}`);
-        }
+        listApuracao.push(`Votos Brancos: ${votosInvalidos.votos_brancos}`);
+        listApuracao.push(`Votos Nulos: ${votosInvalidos.votos_nulos}`);
+       
+       
         return (
-            listApuracao.join(', \n') +
-            listInvalidos.join('\n')
+            listApuracao.join(', \n')
         );
     }
 
