@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 import img from "../../assets/logo.jpeg";
 import lucasCoxinha from "../../assets/lucasCoxinha.jpg";
@@ -7,6 +6,12 @@ import passaFome from "../../assets/passafome.jpg";
 import vasco from "../../assets/vasco.png";
 import roberta from "../../assets/roberta.jpg";
 import arthur from "../../assets/arthur.jpg";
+import silvia from "../../assets/silvia.jpg";
+import pxtrick from "../../assets/pxtrickViajando.jpg";
+import leoSemTeto from "../../assets/leoSemteto.jpg";
+import anaLia from "../../assets/anaLia.jpg";
+import romulo from "../../assets/romulo.jpg";
+import felipe from "../../assets/felipe.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
@@ -14,7 +19,6 @@ import Teclado from "../Teclado";
 
 export default function TelaPresidente() {
 
-    const navigate = useNavigate();
 
     const teclas = useRef(audioTeclas);
 
@@ -52,7 +56,58 @@ export default function TelaPresidente() {
             'numero': '24',
             'imagem': roberta,
             'votos': 0
-        }
+        },
+        {
+            'nome': 'Pxtrick viajando',
+            'partido': 'Partido do Felipe !Schimit',
+            'cargo': 'Presidente',
+            'numero': '34',
+            'imagem': pxtrick,
+            'votos': 0
+      },
+      {
+            'nome': 'Leo Sem Teto',
+            'partido': 'Partido Banco da Praça ',
+            'cargo': 'Presidente',
+            'numero': '23',
+            'imagem': leoSemTeto,
+            'votos': 0
+      },
+      {
+            'nome': 'Silvia Possuída',
+            'partido': 'Partido sobrenatural',
+            'cargo': 'Presidente',
+            'numero': '10',
+            'imagem': silvia,
+            'votos': 0
+      },
+      {
+        'nome': 'Ana Lia',
+        'partido': 'Partido do Empadão',
+        'cargo': 'Presidente',
+        'numero': '12',
+        'imagem': anaLia,
+        'votos': 0
+    },
+    
+    {
+        'nome': 'Rômulo',
+        'partido': 'Partido da Linguiça',
+        'cargo': 'Presidente',
+        'numero': '21',
+        'imagem': romulo,
+        'votos': 0
+    },
+
+    {
+        'nome': 'Felipe !Schimit',
+        'partido': 'Partido doce de Paçoca',
+        'cargo': 'Presidente',
+        'numero': '14',
+        'imagem': felipe,
+        'votos': 0
+    }
+
     ])
     const teclasRefTeclado = useRef(new Audio(audioTeclas));
     const teclasRefConfirma = useRef(new Audio(audioTeclaConfirma));
@@ -162,7 +217,6 @@ export default function TelaPresidente() {
         }
         setVotos(votos + 1);
         aoCorrigir();
-        navigate("/");
     }
 
 
@@ -172,11 +226,11 @@ export default function TelaPresidente() {
         setBranco('branco');
     }
 
-     function apuracaoPresidente(candidatos, votosInvalidos) {
+     function apuracaoPresidente() {
         let listApuracao = [];
 
         for (let i = 0; i < candidatos.length; i++) {
-            listApuracao.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
         listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
         listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
