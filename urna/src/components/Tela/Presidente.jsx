@@ -9,12 +9,10 @@ import felipe from "../../assets/felipe.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
-import { useNavigate } from "react-router-dom";
 
 
 export default function TelaPresidente() {
 
-    const navigate = useNavigate();
 
     const teclas = useRef(audioTeclas);
 
@@ -171,7 +169,6 @@ export default function TelaPresidente() {
         }
         setVotos(votos + 1);
         aoCorrigir();
-        navigate('/');
     }
 
 
@@ -181,27 +178,27 @@ export default function TelaPresidente() {
         setBranco('branco');
     }
 
-    function apuracaoPresidente() {
-        let listapuracaoPresidente = [];
+    function apuracao() {
+        let listApuracao = [];
 
         for (let i = 0; i < candidatos.length; i++) {
-            listapuracaoPresidente.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
-        listapuracaoPresidente.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
-        listapuracaoPresidente.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+        listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+        listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
 
 
         return (
-            listapuracaoPresidente.join(', \n')
+            listApuracao.join(', \n')
         );
     }
 
 
-    function infosPresidentes() {
+    function infoPresidentes() {
         let presidenteList = [];
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].cargo === 'Presidente') {
-                presidenteList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
+                presidenteList.push(`${candidatos[i].cargo}: ${candidatos[i].nome} (${candidatos[i].numero})`);
             }
         }
         return (
@@ -213,11 +210,6 @@ export default function TelaPresidente() {
         verificaCandidato();
     }, [digito2]);
 
-    useEffect(() => {
-        teclasRefTeclado.current = new Audio(audioTeclas);
-        teclasRefConfirma.current = new Audio(audioTeclaConfirma);
-      }, []);
-
     return (
 
         <div className="telaBranca">
@@ -227,7 +219,7 @@ export default function TelaPresidente() {
 
 
             <div className="apuracao">
-                <button className="botaoApuracao" onClick={() => setApura(apuracaoPresidente())}>Apuração</button>
+                <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
                 <p className="resultadoApuracao">{apura}</p>
 
             </div>
@@ -240,7 +232,7 @@ export default function TelaPresidente() {
 
                     <div className="infos">
                         <h1 className="cargo">Presidente</h1>
-                        <h1 className="cola">Candidatos: {infosPresidentes()}</h1>
+                        <h1 className="cola">Candidatos: {infoPresidentes()}</h1>
 
 
                         <section className="digito">

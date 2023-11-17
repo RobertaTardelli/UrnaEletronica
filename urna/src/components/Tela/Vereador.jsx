@@ -11,7 +11,6 @@ import felipe from "../../assets/felipe.jpg";
 import Teclado from "../Teclado";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
-import { Link } from 'react-router-dom';
 
 
 export default function TelaVereador() {
@@ -187,7 +186,6 @@ export default function TelaVereador() {
             }
             setVotos(votos + 1);
             aoCorrigir();
-            setApura(apuracaoVereador());
             navigate("/TelaSenador");
       }
 
@@ -198,18 +196,18 @@ export default function TelaVereador() {
             setBranco('branco');
       }
 
-      function apuracaoVereador() {
-            let listapuracaoVereador = [];
+      function apuracao() {
+            let listApuracao = [];
 
             for (let i = 0; i < candidatos.length; i++) {
-                  listapuracaoVereador.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+                  listApuracao.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
             }
-            listapuracaoVereador.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
-            listapuracaoVereador.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+            listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+            listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
 
 
             return (
-                  listapuracaoVereador.join(', \n')
+                  listApuracao.join(', \n')
             );
       }
 
@@ -244,9 +242,9 @@ export default function TelaVereador() {
 
 
                   <div className="apuracao">
-                        <button className="botaoApuracao" onClick={() => setApura(apuracaoVereador())}>Apuração</button>
+                        <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
                         <p className="resultadoApuracao">{apura}</p>
-                        
+
                   </div>
 
                   <div className="urna">

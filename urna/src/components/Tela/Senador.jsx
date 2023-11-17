@@ -10,13 +10,10 @@ import felipe from "../../assets/felipe.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 
 
 export default function TelaSenador() {
 
-    const navigate = useNavigate();
 
     const teclas = useRef(audioTeclas);
 
@@ -181,8 +178,6 @@ export default function TelaSenador() {
         }
         setVotos(votos + 1);
         aoCorrigir();
-        setApura(apuracaoSenador());
-        navigate("/TelaPresidente");
     }
 
 
@@ -192,18 +187,18 @@ export default function TelaSenador() {
         setBranco('branco');
     }
 
-    function apuracaoSenador() {
-        let listapuracaoSenador = [];
+    function apuracao() {
+        let listApuracao = [];
 
         for (let i = 0; i < candidatos.length; i++) {
-            listapuracaoSenador.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
-        listapuracaoSenador.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
-        listapuracaoSenador.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+        listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+        listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
 
 
         return (
-            listapuracaoSenador.join(', \n')
+            listApuracao.join(', \n')
         );
     }
 
@@ -224,11 +219,6 @@ export default function TelaSenador() {
         verificaCandidato();
     }, [digito3]);
 
-    useEffect(() => {
-        teclasRefTeclado.current = new Audio(audioTeclas);
-        teclasRefConfirma.current = new Audio(audioTeclaConfirma);
-      }, []);
-
     return (
 
         <div className="telaBranca">
@@ -238,9 +228,9 @@ export default function TelaSenador() {
 
 
             <div className="apuracao">
-                <button className="botaoApuracao" onClick={() => setApura(apuracaoSenador())}>Apuração</button>
+                <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
                 <p className="resultadoApuracao">{apura}</p>
-                
+
             </div>
 
             <div className="urna">
