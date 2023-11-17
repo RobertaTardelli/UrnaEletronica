@@ -196,7 +196,7 @@ export default function TelaVereador() {
             setBranco('branco');
       }
 
-      function apuracao() {
+      function apuracaoVereador() {
             let listApuracao = [];
 
             for (let i = 0; i < candidatos.length; i++) {
@@ -216,7 +216,7 @@ export default function TelaVereador() {
             let vereadoresList = [];
             for (let i = 0; i < candidatos.length; i++) {
                   if (candidatos[i].cargo === 'Vereador') {
-                        vereadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
+                        vereadoresList.push(`${candidatos[i].cargo}: ${candidatos[i].nome} (${candidatos[i].numero})`);
                   }
             }
             return (
@@ -242,7 +242,7 @@ export default function TelaVereador() {
 
 
                   <div className="apuracao">
-                        <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                        <button className="botaoApuracao" onClick={() => setApura(apuracaoVereador())}>Apuração</button>
                         <p className="resultadoApuracao">{apura}</p>
 
                   </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 import img from "../../assets/logo.jpeg";
 import coxinha from "../../assets/coxinha.png";
@@ -13,6 +14,7 @@ import Teclado from "../Teclado";
 
 export default function TelaPresidente() {
 
+    const navigate = useNavigate();
 
     const teclas = useRef(audioTeclas);
 
@@ -169,6 +171,7 @@ export default function TelaPresidente() {
         }
         setVotos(votos + 1);
         aoCorrigir();
+        navigate("/");
     }
 
 
@@ -178,11 +181,11 @@ export default function TelaPresidente() {
         setBranco('branco');
     }
 
-    function apuracao() {
+     function apuracaoPresidente() {
         let listApuracao = [];
 
         for (let i = 0; i < candidatos.length; i++) {
-            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+            listApuracao.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
         listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
         listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
@@ -198,7 +201,7 @@ export default function TelaPresidente() {
         let presidenteList = [];
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].cargo === 'Presidente') {
-                presidenteList.push(`${candidatos[i].cargo}: ${candidatos[i].nome} (${candidatos[i].numero})`);
+                presidenteList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
             }
         }
         return (
@@ -210,6 +213,11 @@ export default function TelaPresidente() {
         verificaCandidato();
     }, [digito2]);
 
+    useEffect(() => {
+        teclasRefTeclado.current = new Audio(audioTeclas);
+        teclasRefConfirma.current = new Audio(audioTeclaConfirma);
+      }, []);
+
     return (
 
         <div className="telaBranca">
@@ -219,7 +227,7 @@ export default function TelaPresidente() {
 
 
             <div className="apuracao">
-                <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                <button className="botaoApuracao" onClick={() => setApura(apuracaoPresidente())}>Apuração</button>
                 <p className="resultadoApuracao">{apura}</p>
 
             </div>
