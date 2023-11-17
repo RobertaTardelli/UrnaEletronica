@@ -5,7 +5,7 @@ import img from "../../assets/logo.jpeg";
 import lucasCoxinha from "../../assets/lucasCoxinha.jpg";
 import passaFome from "../../assets/passafome.jpg";
 import vasco from "../../assets/vasco.png";
-import romulo from "../../assets/romulo.jpg";
+import roberta from "../../assets/roberta.jpg";
 import arthur from "../../assets/arthur.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
@@ -46,11 +46,11 @@ export default function TelaPresidente() {
             'votos': 0
         },
         {
-            'nome': 'Roberta',
-            'partido': 'Partido da Linguiça',
+            'nome': 'Roberta Cervejinha',
+            'partido': 'Partido Sempre Alegre',
             'cargo': 'Presidente',
             'numero': '24',
-            'imagem': romulo,
+            'imagem': roberta,
             'votos': 0
         }
     ])
