@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import img from "../../assets/logo.jpeg";
-import coxinha from "../../assets/coxinha.png";
+import lucasCoxinha from "../../assets/lucasCoxinha.jpg";
 import passaFome from "../../assets/passafome.jpg";
 import vasco from "../../assets/vasco.png";
 import romulo from "../../assets/romulo.jpg";
-import felipe from "../../assets/felipe.jpg";
+import arthur from "../../assets/arthur.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
@@ -26,7 +26,7 @@ export default function TelaPresidente() {
             'partido': 'Partido dos Salgados',
             'cargo': 'Presidente',
             'numero': '16',
-            'imagem': coxinha,
+            'imagem': lucasCoxinha,
             'votos': 0
         },
         {
@@ -38,28 +38,19 @@ export default function TelaPresidente() {
             'votos': 0
         },
         {
-            'nome': 'Roberta',
-            'partido': 'Partido ',
+            'nome': 'Arthur Flamenguista',
+            'partido': 'Partido Não Ganha Nada',
             'cargo': 'Presidente',
-            'numero': '1008',
-            'imagem': passaFome,
+            'numero': '71',
+            'imagem': arthur,
             'votos': 0
         },
         {
-            'nome': 'Rômulo',
+            'nome': 'Roberta',
             'partido': 'Partido da Linguiça',
             'cargo': 'Presidente',
-            'numero': '2455',
+            'numero': '24',
             'imagem': romulo,
-            'votos': 0
-        },
-
-        {
-            'nome': 'Felipe !Schimit',
-            'partido': 'Partido doce de Paçoca',
-            'cargo': 'Presidente',
-            'numero': '5368',
-            'imagem': felipe,
             'votos': 0
         }
     ])
@@ -181,7 +172,7 @@ export default function TelaPresidente() {
         setBranco('branco');
     }
 
-     function apuracaoPresidente() {
+     function apuracaoPresidente(candidatos, votosInvalidos) {
         let listApuracao = [];
 
         for (let i = 0; i < candidatos.length; i++) {

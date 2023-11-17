@@ -2,15 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import img from "../../assets/logo.jpeg";
-import coxinha from "../../assets/coxinha.png";
-import pxtrick from "../../assets/pxtrick.jpg";
-import passaFome from "../../assets/passafome.jpg";
+import anaLia from "../../assets/anaLia.jpg";
 import vasco from "../../assets/vasco.png";
 import romulo from "../../assets/romulo.jpg";
 import felipe from "../../assets/felipe.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
+
 
 
 export default function TelaSenador() {
@@ -24,29 +23,14 @@ export default function TelaSenador() {
 
     const [candidatos, setCandidatos] = useState([
         {
-            'nome': 'Lucas Coxinha',
-            'partido': 'Partido dos Salgados',
+            'nome': 'Ana Lia',
+            'partido': 'Partido do Empadão',
             'cargo': 'Senador',
             'numero': '123',
-            'imagem': coxinha,
+            'imagem': anaLia,
             'votos': 0
         },
-        {
-            'nome': 'Pxtrick do Felipe ',
-            'partido': 'Partido !Schimit ',
-            'cargo': 'Senador',
-            'numero': '479',
-            'imagem': pxtrick,
-            'votos': 0
-        },
-        {
-            'nome': 'Rodrigo',
-            'partido': 'Partido do Passa Fome',
-            'cargo': 'Senador',
-            'numero': '520',
-            'imagem': passaFome,
-            'votos': 0
-        },
+        
         {
             'nome': 'Rômulo',
             'partido': 'Partido da Linguiça',

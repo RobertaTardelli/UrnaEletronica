@@ -2,12 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import img from "../../assets/logo.jpeg";
-import coxinha from "../../assets/coxinha.png";
-import pxtrick from "../../assets/pxtrick.jpg";
-import passaFome from "../../assets/passafome.jpg";
+import silvia from "../../assets/silvia.jpg";
+import pxtrick from "../../assets/pxtrickViajando.jpg";
 import vasco from "../../assets/vasco.png";
-import romulo from "../../assets/romulo.jpg";
-import felipe from "../../assets/felipe.jpg";
+import leoSemTeto from "../../assets/leoSemteto.jpg";
 import Teclado from "../Teclado";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
@@ -22,46 +20,30 @@ export default function TelaVereador() {
 
       const [candidatos, setCandidatos] = useState([
             {
-                  'nome': 'Lucas Coxinha',
-                  'partido': 'Partido dos Salgados',
+                  'nome': 'Pxtrick viajando',
+                  'partido': 'Partido do Felipe !Schimit',
                   'cargo': 'Vereador',
                   'numero': '1234',
-                  'imagem': coxinha,
-                  'votos': 0
-            },
-            {
-                  'nome': 'Pxtrick do Felipe ',
-                  'partido': 'Partido !Schimit ',
-                  'cargo': 'Vereador',
-                  'numero': '2345',
                   'imagem': pxtrick,
                   'votos': 0
             },
             {
-                  'nome': 'Rodrigo',
-                  'partido': 'Partido do Passa Fome',
+                  'nome': 'Leo Sem Teto',
+                  'partido': 'Partido Banco da Praça ',
                   'cargo': 'Vereador',
-                  'numero': '1008',
-                  'imagem': passaFome,
+                  'numero': '2345',
+                  'imagem': leoSemTeto,
                   'votos': 0
             },
             {
-                  'nome': 'Rômulo',
-                  'partido': 'Partido da Linguiça',
+                  'nome': 'Silvia Possuída',
+                  'partido': 'Partido sobrenatural',
                   'cargo': 'Vereador',
-                  'numero': '2455',
-                  'imagem': romulo,
-                  'votos': 0
-            },
-
-            {
-                  'nome': 'Felipe !Schimit',
-                  'partido': 'Partido doce de Paçoca',
-                  'cargo': 'Vereador',
-                  'numero': '5368',
-                  'imagem': felipe,
+                  'numero': '1001',
+                  'imagem': silvia,
                   'votos': 0
             }
+            
       ])
       const teclasRefTeclado = useRef(new Audio(audioTeclas));
       const teclasRefConfirma = useRef(new Audio(audioTeclaConfirma));
@@ -216,7 +198,7 @@ export default function TelaVereador() {
             let vereadoresList = [];
             for (let i = 0; i < candidatos.length; i++) {
                   if (candidatos[i].cargo === 'Vereador') {
-                        vereadoresList.push(`${candidatos[i].cargo}: ${candidatos[i].nome} (${candidatos[i].numero})`);
+                        vereadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
                   }
             }
             return (
