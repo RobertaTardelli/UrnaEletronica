@@ -8,19 +8,7 @@ function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/TelaVereador">Tela Vereadores</Link>
-            </li>
-            <li>
-              <Link to="/TelaSenador">Tela Senadores</Link>
-            </li>
-            <li>
-              <Link to="/TelaPresidente">Tela Presidente</Link>
-            </li>
-          </ul>
-        </nav>
+       
 
         <Routes>
           <Route path="/" element={<TelaVereador />} />

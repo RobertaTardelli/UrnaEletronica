@@ -10,10 +10,13 @@ import felipe from "../../assets/felipe.jpg";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
 import Teclado from "../Teclado";
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 export default function TelaSenador() {
 
+    const navigate = useNavigate();
 
     const teclas = useRef(audioTeclas);
 
@@ -23,7 +26,7 @@ export default function TelaSenador() {
         {
             'nome': 'Lucas Coxinha',
             'partido': 'Partido dos Salgados',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '123',
             'imagem': coxinha,
             'votos': 0
@@ -31,7 +34,7 @@ export default function TelaSenador() {
         {
             'nome': 'Pxtrick do Felipe ',
             'partido': 'Partido !Schimit ',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '479',
             'imagem': pxtrick,
             'votos': 0
@@ -39,7 +42,7 @@ export default function TelaSenador() {
         {
             'nome': 'Rodrigo',
             'partido': 'Partido do Passa Fome',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '520',
             'imagem': passaFome,
             'votos': 0
@@ -47,7 +50,7 @@ export default function TelaSenador() {
         {
             'nome': 'Rômulo',
             'partido': 'Partido da Linguiça',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '210',
             'imagem': romulo,
             'votos': 0
@@ -56,7 +59,7 @@ export default function TelaSenador() {
         {
             'nome': 'Felipe !Schimit',
             'partido': 'Partido doce de Paçoca',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '142',
             'imagem': felipe,
             'votos': 0
@@ -76,7 +79,7 @@ export default function TelaSenador() {
         {
             'nome': '',
             'partido': '',
-            'cargo': 'senador',
+            'cargo': 'Senador',
             'numero': '',
             'imagem': vasco
         }
@@ -178,6 +181,8 @@ export default function TelaSenador() {
         }
         setVotos(votos + 1);
         aoCorrigir();
+        setApura(apuracaoSenador());
+        navigate("/TelaPresidente");
     }
 
 
@@ -187,18 +192,18 @@ export default function TelaSenador() {
         setBranco('branco');
     }
 
-    function apuracao() {
-        let listApuracao = [];
+    function apuracaoSenador() {
+        let listapuracaoSenador = [];
 
         for (let i = 0; i < candidatos.length; i++) {
-            listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+            listapuracaoSenador.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
-        listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
-        listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+        listapuracaoSenador.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+        listapuracaoSenador.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
 
 
         return (
-            listApuracao.join(', \n')
+            listapuracaoSenador.join(', \n')
         );
     }
 
@@ -206,7 +211,7 @@ export default function TelaSenador() {
     function infoSenadores() {
         let senadoresList = [];
         for (let i = 0; i < candidatos.length; i++) {
-            if (candidatos[i].cargo === 'senador') {
+            if (candidatos[i].cargo === 'Senador') {
                 senadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
             }
         }
@@ -219,6 +224,11 @@ export default function TelaSenador() {
         verificaCandidato();
     }, [digito3]);
 
+    useEffect(() => {
+        teclasRefTeclado.current = new Audio(audioTeclas);
+        teclasRefConfirma.current = new Audio(audioTeclaConfirma);
+      }, []);
+
     return (
 
         <div className="telaBranca">
@@ -228,9 +238,9 @@ export default function TelaSenador() {
 
 
             <div className="apuracao">
-                <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                <button className="botaoApuracao" onClick={() => setApura(apuracaoSenador())}>Apuração</button>
                 <p className="resultadoApuracao">{apura}</p>
-
+                
             </div>
 
             <div className="urna">

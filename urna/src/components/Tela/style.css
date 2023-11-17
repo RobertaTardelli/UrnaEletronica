@@ -24,10 +24,10 @@
     display: flex;
     flex-direction: column;
 }
-/* .infos_cargo{
-    margin: 0 auto;
-    margin-bottom: 50px;
-} */
+.infos h1 {
+    margin: auto;
+    padding: 1px;
+}
 .cargo {
     justify-content: center;
     margin-bottom: 10px;
@@ -40,6 +40,7 @@
 }
 .digito {
     display: flex;
+    
 }
 .numero {
     margin-right: 50px;
@@ -92,7 +93,7 @@
 h4 {
     color: rgb(0, 0, 0);
     font-size: 20px;
-    padding-bottom: 70px;
+    padding-bottom: 0px;
 }
 .votoBranco {
     background-color: silver;
@@ -101,11 +102,7 @@ h4 {
     display: flex;
     justify-content: center;
 }
-.botaoSim {
-    width: 130px;
-    height: 130px;
-    background-color: green;
-}
+
 h5{
     font-size: 50px;
     color: black;
@@ -114,22 +111,14 @@ h5{
     margin-left: 50px;
 }
 
-.branco {
-    width: 100px;
-    height: 60px;
-    background-color: silver;
-    color: green;
-    margin-left: 230px;
-}
 .rodape{
     font-size: 25px;
+    
 }
 .apuracao{
     display: flex;
     justify-content: end;
     flex-direction: column;
-    
-    
     
 }
 .botaoApuracao{

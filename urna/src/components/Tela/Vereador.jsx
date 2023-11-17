@@ -11,6 +11,7 @@ import felipe from "../../assets/felipe.jpg";
 import Teclado from "../Teclado";
 import audioTeclas from "../../audio/audioTeclas.mp3";
 import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
+import { Link } from 'react-router-dom';
 
 
 export default function TelaVereador() {
@@ -24,7 +25,7 @@ export default function TelaVereador() {
             {
                   'nome': 'Lucas Coxinha',
                   'partido': 'Partido dos Salgados',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '1234',
                   'imagem': coxinha,
                   'votos': 0
@@ -32,7 +33,7 @@ export default function TelaVereador() {
             {
                   'nome': 'Pxtrick do Felipe ',
                   'partido': 'Partido !Schimit ',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '2345',
                   'imagem': pxtrick,
                   'votos': 0
@@ -40,7 +41,7 @@ export default function TelaVereador() {
             {
                   'nome': 'Rodrigo',
                   'partido': 'Partido do Passa Fome',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '1008',
                   'imagem': passaFome,
                   'votos': 0
@@ -48,7 +49,7 @@ export default function TelaVereador() {
             {
                   'nome': 'Rômulo',
                   'partido': 'Partido da Linguiça',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '2455',
                   'imagem': romulo,
                   'votos': 0
@@ -57,7 +58,7 @@ export default function TelaVereador() {
             {
                   'nome': 'Felipe !Schimit',
                   'partido': 'Partido doce de Paçoca',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '5368',
                   'imagem': felipe,
                   'votos': 0
@@ -78,7 +79,7 @@ export default function TelaVereador() {
             {
                   'nome': '',
                   'partido': '',
-                  'cargo': 'vereador',
+                  'cargo': 'Vereador',
                   'numero': '',
                   'imagem': vasco
             }
@@ -186,7 +187,8 @@ export default function TelaVereador() {
             }
             setVotos(votos + 1);
             aoCorrigir();
-            navigate.push("/TelaSenador");
+            setApura(apuracaoVereador());
+            navigate("/TelaSenador");
       }
 
 
@@ -196,37 +198,42 @@ export default function TelaVereador() {
             setBranco('branco');
       }
 
-      function apuracao() {
-            let listApuracao = [];
+      function apuracaoVereador() {
+            let listapuracaoVereador = [];
 
             for (let i = 0; i < candidatos.length; i++) {
-                  listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
+                  listapuracaoVereador.push(`${candidatos[i].cargo}: ${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
             }
-            listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
-            listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+            listapuracaoVereador.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+            listapuracaoVereador.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
 
 
             return (
-                  listApuracao.join(', \n')
+                  listapuracaoVereador.join(', \n')
             );
       }
 
 
-      function infoSenadores() {
-            let senadoresList = [];
+      function infoVereadores() {
+            let vereadoresList = [];
             for (let i = 0; i < candidatos.length; i++) {
-                  if (candidatos[i].cargo === 'senador') {
-                        senadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
+                  if (candidatos[i].cargo === 'Vereador') {
+                        vereadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
                   }
             }
             return (
-                  senadoresList.join(', ')
+                  vereadoresList.join(', ')
             );
       }
 
       useEffect(() => {
             verificaCandidato();
       }, [digito4]);
+
+      useEffect(() => {
+            teclasRefTeclado.current = new Audio(audioTeclas);
+            teclasRefConfirma.current = new Audio(audioTeclaConfirma);
+          }, []);
 
       return (
 
@@ -237,9 +244,9 @@ export default function TelaVereador() {
 
 
                   <div className="apuracao">
-                        <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                        <button className="botaoApuracao" onClick={() => setApura(apuracaoVereador())}>Apuração</button>
                         <p className="resultadoApuracao">{apura}</p>
-
+                        
                   </div>
 
                   <div className="urna">
@@ -249,8 +256,8 @@ export default function TelaVereador() {
                         <div className="tela">
 
                               <div className="infos">
-                                    <h1 className="cargo">Senadores</h1>
-                                    <h1 className="cola">Candidatos: {infoSenadores()}</h1>
+                                    <h1 className="cargo">Vereadores</h1>
+                                    <h1 className="cola">Candidatos: {infoVereadores()}</h1>
 
 
                                     <section className="digito">
