@@ -1,0 +1,147 @@
+.urna {
+    background-color: silver;
+    width: 1200px;
+    height: 600px;
+    border-radius: 50px;
+    display: flex;
+}
+
+.tela {
+    width: 700px;
+    height: 500px;
+    background-color: white;
+    margin-left: 30px;
+    margin-top: 60px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.infos{
+    background-color: white;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+/* .infos_cargo{
+    margin: 0 auto;
+    margin-bottom: 50px;
+} */
+.cargo {
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 60px;
+}
+.cola {
+    font-size: 15px;
+    padding-bottom: 50px;
+
+}
+.digito {
+    display: flex;
+}
+.numero {
+    margin-right: 50px;
+}
+
+.input {
+    width: 50px;
+    height: 60px;
+    border: 2px solid rgb(104, 100, 100);
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+}
+.imagens{
+    background-color: white;
+    width: 30%;
+    display: flex;
+}
+.titulo img {
+    border-radius: 20px;
+}
+.imagens img {
+    width: 150px;
+    height: 170px;
+    margin-left: 30px;
+    margin-top: 20px;
+    border: 2px solid rgb(104, 100, 100);
+}
+.tituloTeclado {
+    width: 400px;
+    height: 500px;
+}
+.titulo {
+    font-size: 35px;
+    display: flex;
+    justify-content: end;
+    background-color: white;
+    margin-left: 45px;
+    height: 100px;
+    color: black;
+    width: 400px;
+    margin-top: 20px;
+    border-radius: 20px;  
+}
+.titulo p {
+    font-size: 30px;
+    margin-left: 80px;
+    margin-top: 15px;
+}
+h4 {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    padding-bottom: 70px;
+}
+.votoBranco {
+    background-color: silver;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+.botaoSim {
+    width: 130px;
+    height: 130px;
+    background-color: green;
+}
+h5{
+    font-size: 50px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.branco {
+    width: 100px;
+    height: 60px;
+    background-color: silver;
+    color: green;
+    margin-left: 230px;
+}
+.rodape{
+    font-size: 25px;
+}
+.apuracao{
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    
+    
+    
+}
+.botaoApuracao{
+    width: 100px;
+    height: 70px;
+    font-size: 20px;
+}
+.resultadoApuracao {
+    font-size: 20px;
+    flex-direction: column;
+    
+     
+    
+}
+

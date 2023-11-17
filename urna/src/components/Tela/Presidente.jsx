@@ -1,41 +1,44 @@
 import { useState, useEffect, useRef } from "react";
 import "./style.css";
-import img from "../assets/logo.jpeg";
-import coxinha from "../assets/coxinha.png";
-import pxtrick from "../assets/pxtrick.jpg";
-import passaFome from "../assets/passafome.jpg";
-import vasco from "../assets/vasco.png";
-import romulo from "../assets/romulo.jpg";
-import felipe from "../assets/felipe.jpg";
-import Teclado from "./Teclado";
-import audioTeclas from "../audio/audioTeclas";
-import audioTeclaConfirma from "../audio/audioTeclaConfirma";
-export default function TelaInicial() {
+import img from "../../assets/logo.jpeg";
+import coxinha from "../../assets/coxinha.png";
+import passaFome from "../../assets/passafome.jpg";
+import vasco from "../../assets/vasco.png";
+import romulo from "../../assets/romulo.jpg";
+import felipe from "../../assets/felipe.jpg";
+import audioTeclas from "../../audio/audioTeclas.mp3";
+import audioTeclaConfirma from "../../audio/audioTeclaConfirma.mp3";
+import Teclado from "../Teclado";
 
-//
 
-    const Teclas = useRef (audioTeclas)
+export default function TelaPresidente() {
+
+
+    const teclas = useRef(audioTeclas);
+
+    const confirma = useRef(audioTeclaConfirma);
+
     const [candidatos, setCandidatos] = useState([
         {
             'nome': 'Lucas Coxinha',
             'partido': 'Partido dos Salgados',
-            'cargo': 'senador',
-            'numero': '1234',
+            'cargo': 'presidente',
+            'numero': '16',
             'imagem': coxinha,
             'votos': 0
         },
         {
-            'nome': 'Pxtrick do Felipe ',
-            'partido': 'Partido !Schimit ',
-            'cargo': 'senador',
-            'numero': '2345',
-            'imagem': pxtrick,
+            'nome': 'Rodrigo Come Balde ',
+            'partido': 'Partido Passa Fome ',
+            'cargo': 'presidente',
+            'numero': '01',
+            'imagem': passaFome,
             'votos': 0
         },
         {
-            'nome': 'Rodrigo',
-            'partido': 'Partido do Passa Fome',
-            'cargo': 'senador',
+            'nome': 'Roberta',
+            'partido': 'Partido ',
+            'cargo': 'presidente',
             'numero': '1008',
             'imagem': passaFome,
             'votos': 0
@@ -43,7 +46,7 @@ export default function TelaInicial() {
         {
             'nome': 'Rômulo',
             'partido': 'Partido da Linguiça',
-            'cargo': 'senador',
+            'cargo': 'presidente',
             'numero': '2455',
             'imagem': romulo,
             'votos': 0
@@ -52,17 +55,16 @@ export default function TelaInicial() {
         {
             'nome': 'Felipe !Schimit',
             'partido': 'Partido doce de Paçoca',
-            'cargo': 'senador',
+            'cargo': 'presidente',
             'numero': '5368',
             'imagem': felipe,
             'votos': 0
         }
     ])
-    const [audio] = useState(new Audio(audioTeclas));
+    const teclasRefTeclado = useRef(new Audio(audioTeclas));
+    const teclasRefConfirma = useRef(new Audio(audioTeclaConfirma));
     const [digito1, setDigito1] = useState('');
     const [digito2, setDigito2] = useState('');
-    const [digito3, setDigito3] = useState('');
-    const [digito4, setDigito4] = useState('');
     const [contador, setContador] = useState(1);
     const [rodape, setRodape] = useState('');
     const [votos, setVotos] = useState(true);
@@ -83,42 +85,41 @@ export default function TelaInicial() {
             'votos_brancos': 0
         }
     );
-    function audio (){
-        if(contador == 1 || contador == 2 || contador ==3 || contador == 4) {
-            audioTeclas.current.play();
+    function audioTeclado() {
+        if (contador === 1 || contador === 2) {
+            teclasRefTeclado.current.currentTime = 0;
+            teclasRefTeclado.current.play();
         }
-}
-function aoClicar(digito) {
-    if (contador == 1) {
-        setDigito1(digito);
-        setContador(contador + 1);
-        audio()
     }
-    if (contador == 2) {
-        setDigito2(digito);
-        setContador(contador + 1);
-        audio()
+
+    function audioConfirma() {
+        if (aoConfirmar) {
+            teclasRefConfirma.current.currentTime = 0;
+            teclasRefConfirma.current.play();
+        }
+
     }
-    if (contador == 3) {
-        setDigito3(digito);
-        setContador(contador + 1);
-        audio()
+
+    function aoClicar(digito) {
+        if (contador == 1) {
+            setDigito1(digito);
+            setContador(contador + 1);
+            audioTeclado()
+        }
+        if (contador == 2) {
+            setDigito2(digito);
+            setContador(contador + 1);
+            audioTeclado()
+        }
+
     }
-    if (contador == 4) {
-        setDigito4(digito);
-        setContador(contador + 1);
-        audio()
-    }
-    audio.currentTime = 0;
-    audio.play(audioTeclas);
-}
 
 
 
 
     function verificaCandidato() {
 
-        let numero = `${digito1}${digito2}${digito3}${digito4}`;
+        let numero = `${digito1}${digito2}`;
         let nulo = true;
 
         for (let i = 0; i < candidatos.length; i++) {
@@ -138,8 +139,6 @@ function aoClicar(digito) {
     function aoCorrigir() {
         setDigito1('');
         setDigito2('');
-        setDigito3('');
-        setDigito4('');
         setRodape(' ');
         setBranco(' ');
         setCandidatoDigitado({
@@ -149,11 +148,12 @@ function aoClicar(digito) {
     }
     function aoConfirmar() {
 
-        let numero = `${digito1}${digito2}${digito3}${digito4}`;
+        let numero = `${digito1}${digito2}`;
         let votoCandidato = candidatos;
         let nulo = true;
-        let votoNulo = votosInvalidos;
+        let votoBranco = votosInvalidos;
 
+        audioConfirma();
         for (let i = 0; i < candidatos.length; i++) {
             if (candidatos[i].numero == numero) {
                 votoCandidato[i].votos += 1;
@@ -162,8 +162,10 @@ function aoClicar(digito) {
                 break;
             }
         }
-        if (nulo && (numero !== '')) {
-            votoNulo.votos_nulos +=1;
+        if (branco === 'branco') {
+            votoBranco.votos_brancos += 1;
+        } else if (nulo && (numero !== ' ')) {
+            votosInvalidos.votos_nulos += 1;
         }
         setVotos(votos + 1);
         aoCorrigir();
@@ -172,31 +174,20 @@ function aoClicar(digito) {
 
 
     function aoBranco() {
-        setBranco('');
-        <div className={setBranco(<button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
-        )}>
-        </div>
-
-        console.log('voto branco');
-    }
-    function confirmaVotoBranco() {
-        let votoBranco = votosInvalidos
-        votoBranco.votos_brancos += 1;
-        aoCorrigir();
-        console.log(votosInvalidos.votos_brancos);
-
+        setRodape('Deseja votar em branco?');
+        setBranco('branco');
     }
 
     function apuracao() {
         let listApuracao = [];
-        
+
         for (let i = 0; i < candidatos.length; i++) {
             listApuracao.push(`${candidatos[i].nome}: (${candidatos[i].votos} votos)`);
         }
-        listApuracao.push(`Votos Brancos: ${votosInvalidos.votos_brancos}`);
-        listApuracao.push(`Votos Nulos: ${votosInvalidos.votos_nulos}`);
-       
-       
+        listApuracao.push(`Votos Brancos: (${votosInvalidos.votos_brancos} votos)`);
+        listApuracao.push(`Votos Nulos: (${votosInvalidos.votos_nulos} votos)`);
+
+
         return (
             listApuracao.join(', \n')
         );
@@ -206,7 +197,7 @@ function aoClicar(digito) {
     function infoSenadores() {
         let senadoresList = [];
         for (let i = 0; i < candidatos.length; i++) {
-            if (candidatos[i].cargo === 'senador') {
+            if (candidatos[i].cargo === 'presidente') {
                 senadoresList.push(`${candidatos[i].nome} (${candidatos[i].numero})`);
             }
         }
@@ -217,20 +208,21 @@ function aoClicar(digito) {
 
     useEffect(() => {
         verificaCandidato();
-    }, [digito4]);
+    }, [digito2]);
 
     return (
 
         <div className="telaBranca">
-<audio>
-    ref ={teclas} src= {audioTeclas} type= "audio/mp3"
-</audio>      
+            <audio ref={teclasRefTeclado} src={audioTeclas} type="audio/mp3" />
+            <audio ref={teclasRefConfirma} src={audioTeclaConfirma} type="audio/mp3" />
 
-                        <div className="apuracao">
-                            <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
-                            <p className="resultadoApuracao">{apura}</p>
 
-                        </div>
+
+            <div className="apuracao">
+                <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
+                <p className="resultadoApuracao">{apura}</p>
+
+            </div>
 
             <div className="urna">
 
@@ -242,7 +234,6 @@ function aoClicar(digito) {
                         <h1 className="cargo">Senadores</h1>
                         <h1 className="cola">Candidatos: {infoSenadores()}</h1>
 
-                        {/* <h3 className="infos_cargo">{candidatoDigitado.cargo}</h3> */}
 
                         <section className="digito">
 
@@ -252,14 +243,12 @@ function aoClicar(digito) {
 
                             <p className='input'>{digito1}</p>
                             <p className='input'>{digito2}</p>
-                            <p className='input'>{digito3}</p>
-                            <p className='input'>{digito4}</p>
 
                         </section>
                         <h4>Nome: {candidatoDigitado.nome}</h4>
                         <h4>Partido: {candidatoDigitado.partido}</h4>
                         <h5 className="rodape">{rodape}</h5>
-                        
+
 
                     </div>
                     <div className="imagens">
