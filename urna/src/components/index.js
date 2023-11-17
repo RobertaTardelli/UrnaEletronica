@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./style.css";
 import img from "../assets/logo.jpeg";
 import coxinha from "../assets/coxinha.png";
@@ -8,12 +8,13 @@ import vasco from "../assets/vasco.png";
 import romulo from "../assets/romulo.jpg";
 import felipe from "../assets/felipe.jpg";
 import Teclado from "./Teclado";
-
+import audioTeclas from "../audio/audioTeclas";
+import audioTeclaConfirma from "../audio/audioTeclaConfirma";
 export default function TelaInicial() {
 
+//
 
-
-
+    const Teclas = useRef (audioTeclas)
     const [candidatos, setCandidatos] = useState([
         {
             'nome': 'Lucas Coxinha',
@@ -57,7 +58,7 @@ export default function TelaInicial() {
             'votos': 0
         }
     ])
-
+    const [audio] = useState(new Audio(audioTeclas));
     const [digito1, setDigito1] = useState('');
     const [digito2, setDigito2] = useState('');
     const [digito3, setDigito3] = useState('');
@@ -65,7 +66,7 @@ export default function TelaInicial() {
     const [contador, setContador] = useState(1);
     const [rodape, setRodape] = useState('');
     const [votos, setVotos] = useState(true);
-    const [branco, setBranco] = useState('');
+    const [branco, setBranco] = useState(0);
     const [apura, setApura] = useState(' ');
     const [candidatoDigitado, setCandidatoDigitado] = useState(
         {
@@ -82,25 +83,35 @@ export default function TelaInicial() {
             'votos_brancos': 0
         }
     );
-
-    function aoClicar(digito) {
-        if (contador == 1) {
-            setDigito1(digito);
-            setContador(contador + 1);
+    function audio (){
+        if(contador == 1 || contador == 2 || contador ==3 || contador == 4) {
+            audioTeclas.current.play();
         }
-        if (contador == 2) {
-            setDigito2(digito);
-            setContador(contador + 1);
-        }
-        if (contador == 3) {
-            setDigito3(digito);
-            setContador(contador + 1);
-        }
-        if (contador == 4) {
-            setDigito4(digito);
-            setContador(contador + 1);
-        }
+}
+function aoClicar(digito) {
+    if (contador == 1) {
+        setDigito1(digito);
+        setContador(contador + 1);
+        audio()
     }
+    if (contador == 2) {
+        setDigito2(digito);
+        setContador(contador + 1);
+        audio()
+    }
+    if (contador == 3) {
+        setDigito3(digito);
+        setContador(contador + 1);
+        audio()
+    }
+    if (contador == 4) {
+        setDigito4(digito);
+        setContador(contador + 1);
+        audio()
+    }
+    audio.currentTime = 0;
+    audio.play(audioTeclas);
+}
 
 
 
@@ -154,8 +165,6 @@ export default function TelaInicial() {
         if (nulo && (numero !== '')) {
             votoNulo.votos_nulos +=1;
         }
-
-
         setVotos(votos + 1);
         aoCorrigir();
     }
@@ -163,18 +172,20 @@ export default function TelaInicial() {
 
 
     function aoBranco() {
-        setBranco ('Deseja votar em branco?');
-        if (onClick={aoConfirmar}) {
-            confirmaVotoBranco;
-        }
+        setBranco('');
+        <div className={setBranco(<button className="branco" onClick={confirmaVotoBranco}>Confirmar</button>
+        )}>
+        </div>
 
+        console.log('voto branco');
     }
     function confirmaVotoBranco() {
         let votoBranco = votosInvalidos
         votoBranco.votos_brancos += 1;
         aoCorrigir();
+        console.log(votosInvalidos.votos_brancos);
 
-            }
+    }
 
     function apuracao() {
         let listApuracao = [];
@@ -211,6 +222,9 @@ export default function TelaInicial() {
     return (
 
         <div className="telaBranca">
+<audio>
+    ref ={teclas} src= {audioTeclas} type= "audio/mp3"
+</audio>      
 
                         <div className="apuracao">
                             <button className="botaoApuracao" onClick={() => setApura(apuracao())}>Apuração</button>
